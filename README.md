@@ -40,6 +40,19 @@ select SMS_R_System.Name, SMS_G_System_INSTALLED_SOFTWARE.ProductName, SMS_G_Sys
 
 Other Examples
 
+| Possible FlexLM or Sentinel HASP Network Licensing| | | |
+| ----- | ----- | ----- | ----- |
+| %DNAStar% | %Sigmaplot%| %Origin% | %Keystone% |
+| %autodesk% | %bionumerics% | %acslx% | %matlab% |
+| %autocad% | %spss% | %comsol% | %arcgis% | 
+| %solidworks% | %labview% | %abaqus% | %schrodinger% |
+| %graphpad% | HASPKeyDriver
+
+| SAS | | | |
+| ----- | ----- | ----- | ----- |
+| %SAS% | %JMP% | %DataFlux% | %Enterprise Miner% |
+| %Visual Analytics% | %Text Miner% | %EBI% | %Enterprise Reporter% |
+
 | Adobe Products: | | | |
 | ----- | ----- | ----- | ----- |
 | %after effect% | %animate% | %audition% | %bridge% |
@@ -48,8 +61,6 @@ Other Examples
 | %InCopy% | %InDesign% | %lightroom% | %muse% |
 | %photoshop% | %prelude% | %premier pro% | %presenter% |
 | %robohelp% | %framemaker%| %Lifecycle%Design% | |
-
- 
 
 | Misc Licensing | | | |
 | ----- | ----- | ----- | ----- |
@@ -61,20 +72,33 @@ Other Examples
 | %bomgar% | %Sudaan%| %filemaker% | %gartner% |
 | %qlikview% | %symantec% | %xmatters% | %s-plus% |
 
-| Possible FlexLM or Sentinel HASP Network Licensing| | | |
+| For Science! Omit -NF| | | |
 | ----- | ----- | ----- | ----- |
-| %DNAStar% | %Sigmaplot%| %Origin% | %Keystone% |
-| %autodesk% | %bionumerics% | %acslx% | %matlab% |
-| %autocad% | %spss% | %comsol% | %arcgis% | 
-| %solidworks% | %labview% | %abaqus% | %schrodinger% |
-| %graphpad% |
-
-
-| SAS | | | |
-| ----- | ----- | ----- | ----- |
-| %SAS% | %JMP% | %DataFlux% | %Enterprise Miner% |
-| %Visual Analytics% | %Text Miner% | %EBI% | %Enterprise Reporter% |
-
+| %ACD-NMR% | %AcslX% | %AppliedBiosystems% | %BerkeleyMadonna% | 
+| %Brucker% | %CannonMFA% | CellProfiler | CFX BioRad - NF
+| CFX Maestro - NF | ChemBioOffice | ChenomxNMR | CLCGenomics |
+| Dragonfly | DTOpenLayers | Heska | epoc |
+| ImageScope | FlashGel | Gen5 | Graphpad |
+| HALO | iBright | ImageJ | ImageQuant |
+| ImageStudio | Insight | JMP | MacroPath |
+| MassLynx | Mastersizer | MetaXpress | Micrografx | 
+| MinION | NanoAnalyze | NanoDrop | NiceLabel |
+| OSPSuite | Phoenix | QIIME | RVis | 
+| SAS | SBEM | SlideWriter | Unicorn |
+| SoftMax | StyleWriter | Xcalibur | Zetasizer -NF |
+| HALO | G2M | Magnolia | QuantStudio |
+| RStudio | MiSeQ | Actilife | Agilent | 
+| Analyze IQ | CardioECR | Cellometer | cellSens | 
+| CFX Manager -NF | Chemistry4D | Comet | GastroPlus | 
+| GloMax | Image-Pro | ImageXpress | iQ5 | 
+| LinMot | Lumenera | Mathworks | MED-PC | 
+| MicroWriter | novalink | OL 756 | PathView |
+| SpotFire | Statistica | Systat | titmus
+| tractioninstant | transomics | vironova | Vortex
+| chimera | cytoscape | digitizeit | emachineshop |
+| Accelrys | MathType | PeakScanner | Rotor-Gene | 
+| StatXact | Teraterm | transomics | USEPA |
+| VariantReporter
 
 Project & Visio Licensing - Determine the count difference between Pro and Standard Versions
 ```
