@@ -98,7 +98,7 @@ Other Examples
 | chimera | cytoscape | digitizeit | emachineshop |
 | Accelrys | MathType | PeakScanner | Rotor-Gene | 
 | StatXact | Teraterm | transomics | USEPA |
-| VariantReporter
+| VariantReporter | VAS |
 
 Project & Visio Licensing - Determine the count difference between Pro and Standard Versions
 ```
@@ -246,6 +246,8 @@ select SMS_R_System.NetbiosName, SMS_G_System_NETWORK_ADAPTER.Description, SMS_G
 MSI: msiexec /x {GUID} /quiet /norestart
 
 EXE: setup.exe /uninstall
+
+MACRO: "setup.exe" -x -s -f1"%~dp0Uninstall.iss"
 
 ### Install Command
 
