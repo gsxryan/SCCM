@@ -61,7 +61,14 @@ Other Examples
 | %bomgar% | %Sudaan%| %filemaker% | %gartner% |
 | %qlikview% | %symantec% | %xmatters% | %s-plus% |
 
- 
+| Possible FlexLM or Sentinel HASP Network Licensing| | | |
+| ----- | ----- | ----- | ----- |
+| %DNAStar% | %Sigmaplot%| %Origin% | %Keystone% |
+| %autodesk% | %bionumerics% | %acslx% | %matlab% |
+| %autocad% | %spss% | %comsol% | %arcgis% | 
+| %solidworks% | %labview% | %abaqus% | %schrodinger% |
+| %graphpad% |
+
 
 | SAS | | | |
 | ----- | ----- | ----- | ----- |
