@@ -198,12 +198,17 @@ select Name, SMSAssignedSites, IPAddresses, IPSubnets, ADSiteName, OperatingSyst
 ### Local Administrators
 
 Local Machine Administrators list
+WQL:
 ```
 select SMS_R_System.NetbiosName, SMS_G_System_LocalAdmins.AccountName, SMS_G_System_LocalAdmins.GroupName, SMS_G_System_LocalAdmins.TimeStamp, SMS_R_System.OperatingSystemNameandVersion from  SMS_R_System inner join SMS_G_System_LocalAdmins on SMS_G_System_LocalAdmins.ResourceID = SMS_R_System.ResourceId where SMS_G_System_LocalAdmins.GroupName like "%Admin%" and
 SMS_G_System_LocalAdmins.AccountName not like "%Contoso-Admins%"
 and SMS_G_System_LocalAdmins.AccountName not like "%Contoso-T2%"
 ```
+Local Machine Admins, CMPivot:
+```
+Administrators | where Name !contains 'CustomAdmin' and Name !contains 'Domain Admins' and Name !contains 'Contoso-T2-ADMINS' and Name !contains 'Contoso-Workstation-SVCACCT' and Name !contains 'Contoso System Admins' and Name !contains 'Contoso Workstation Admins'
 
+```
 ### Imaging
 
 Machine Imaging completion date (useful for troubleshooting)
@@ -276,14 +281,6 @@ Local administrators: ```net localgroup administrators```
 Add RemoteDesktop AD Users groups: ```net localgroup "remote desktop users" "Contoso Remote Control" /add```
 
 Last Reboot Time: ```Get-CimInstance -ClassName win32_operatingsystem | select csname, lastbootuptime```
-
-
-## CMPivot
-
-Local Admins lookup:
-
-Administrators | where Name !contains 'CustomAdmin' and Name !contains 'Domain Admins' and Name !contains 'Contoso-T2-ADMINS' and Name !contains 'Contoso-Workstation-SVCACCT' and Name !contains 'Contoso System Admins' and Name !contains 'Contoso Workstation Admins'
-
  
 
 ## Collections
