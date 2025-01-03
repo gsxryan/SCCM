@@ -204,11 +204,14 @@ select SMS_R_System.NetbiosName, SMS_G_System_LocalAdmins.AccountName, SMS_G_Sys
 SMS_G_System_LocalAdmins.AccountName not like "%Contoso-Admins%"
 and SMS_G_System_LocalAdmins.AccountName not like "%Contoso-T2%"
 ```
-Local Machine Admins, CMPivot:
+Local Machine Admins with filtering, CMPivot:
 ```
 Administrators | where Name !contains 'CustomAdmin' and Name !contains 'Domain Admins' and Name !contains 'Contoso-T2-ADMINS' and Name !contains 'Contoso-Workstation-SVCACCT' and Name !contains 'Contoso System Admins' and Name !contains 'Contoso Workstation Admins'
 
 ```
+Local Machine Admins, Basic Scripts: 
+```net localgroup administrators```
+
 ### Imaging
 
 Machine Imaging completion date (useful for troubleshooting)
@@ -275,8 +278,6 @@ setup.exe /s --ini="%~dp0BioNumericsx64setup_ini.xml" --logdir="C:\temp\logs"
 EXE with recorded macro ini settings:
 %~dp0DNASTARSetup.exe -p: recsettings.ini
 ## Scripts
-
-Local administrators: ```net localgroup administrators```
 
 Add RemoteDesktop AD Users groups: ```net localgroup "remote desktop users" "Contoso Remote Control" /add```
 
