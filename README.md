@@ -255,8 +255,16 @@ Install Sourcefiles from External location for external source control.  No file
 ```
 powershell.exe -windowstyle hidden -ExecutionPolicy Bypass AppSCCMInstall.ps1 "\\fileserver.contoso.com\Install\App"
 ```
- 
-
+TRANSORM (batch): 
+```
+call msiexec.exe /i "%~dp0Install.msi" /quiet TRANSFORMS="%~dp0transformNoUpdateCheck.mst" INSTALLDIR="C:\Program Files\Originlab\Origin 2015 MSI\" USERNAME="Contoso User" COMPANYNAME="Contoso" PIDKEY="AA1A1-1111-1111111" /l*v "c:\temp\logs\origin.log"
+``` 
+Record INI (batch):
+```
+setup.exe /s --ini="%~dp0BioNumericsx64setup_ini.xml" --logdir="C:\temp\logs"
+```
+EXE with recorded macro ini settings:
+%~dp0DNASTARSetup.exe -p: recsettings.ini
 ## Scripts
 
 Local administrators: ```net localgroup administrators```
