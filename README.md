@@ -249,15 +249,19 @@ EXE: setup.exe /uninstall
 
 MACRO: "setup.exe" -x -s -f1"%~dp0Uninstall.iss"
 
-### Install Command
+### Install Command examples
 
 Install Sourcefiles from External location for external source control.  No file distribution mechanism needed.  SCCM can automate the deployment when developers make a change to the program (gitops in SCCM).  Notice that Execution Policy should not be bypassed in this scenerio, and signed powershell content should be enabled.  This command is testing only for demonstration:
 ```
 powershell.exe -windowstyle hidden -ExecutionPolicy Bypass AppSCCMInstall.ps1 "\\fileserver.contoso.com\Install\App"
 ```
+MSI supress reboot: 
+```
+msiexec.exe /i "%~dp0setup.msi" /qb /l*v "C:\Program Files\Contoso\Logs\App315.log" REBOOT=ReallySuppress
+```
 TRANSORM (batch): 
 ```
-call msiexec.exe /i "%~dp0Install.msi" /quiet TRANSFORMS="%~dp0transformNoUpdateCheck.mst" INSTALLDIR="C:\Program Files\Originlab\Origin 2015 MSI\" USERNAME="Contoso User" COMPANYNAME="Contoso" PIDKEY="AA1A1-1111-1111111" /l*v "c:\temp\logs\origin.log"
+call msiexec.exe /i "%~dp0Install.msi" /quiet TRANSFORMS="%~dp0transformNoUpdateCheck.mst" INSTALLDIR="C:\Program Files\Originlab\Origin YYYY MSI\" USERNAME="Contoso User" COMPANYNAME="Contoso" PIDKEY="AA1A1-1111-1111111" /l*v "c:\temp\logs\origin.log"
 ``` 
 Record INI (batch):
 ```
