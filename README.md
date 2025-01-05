@@ -196,7 +196,48 @@ Select all machines having Software installed using Installed Software ProductNa
 ```
 select SMS_R_System.Name, SMS_G_System_INSTALLED_SOFTWARE.ProductName, SMS_G_System_INSTALLED_SOFTWARE.ProductVersion from  SMS_R_System inner join SMS_G_System_INSTALLED_SOFTWARE on SMS_G_System_INSTALLED_SOFTWARE.ResourceID = SMS_R_System.ResourceId where SMS_G_System_INSTALLED_SOFTWARE.ProductName like "%google chrome%"
 ```
+
+Project & Visio Licensing - Determine the count difference between Pro and Standard Versions
+```
+select SMS_R_System.NetbiosName, SMS_G_System_COMPUTER_SYSTEM.UserName, SMS_G_System_INSTALLED_SOFTWARE.ProductName, SMS_R_System.SystemOUName, SMS_R_System.operatingSystem from  SMS_R_System inner join SMS_G_System_INSTALLED_SOFTWARE on SMS_G_System_INSTALLED_SOFTWARE.ResourceID = SMS_R_System.ResourceId inner join SMS_G_System_COMPUTER_SYSTEM on SMS_G_System_COMPUTER_SYSTEM.ResourceID = SMS_R_System.ResourceId where SMS_G_System_INSTALLED_SOFTWARE.ProductName like "%Visio Standard%" or SMS_G_System_INSTALLED_SOFTWARE.ProductName like "%Visio Pro%" or SMS_G_System_INSTALLED_SOFTWARE.ProductName like "%Project Pro%" or SMS_G_System_INSTALLED_SOFTWARE.ProductName like "%Project Standard%"
+```
  
+
+Select all machines having Software installed below a specific version number (Adobe < 10.1):
+```
+select SMS_R_System.Name, SMS_R_System.OperatingSystemNameandVersion, SMS_G_System_ADD_REMOVE_PROGRAMS.DisplayName, SMS_G_System_ADD_REMOVE_PROGRAMS.Version from  SMS_R_System inner join SMS_G_System_ADD_REMOVE_PROGRAMS on SMS_G_System_ADD_REMOVE_PROGRAMS.ResourceID = SMS_R_System.ResourceId where SMS_G_System_ADD_REMOVE_PROGRAMS.DisplayName like "Adobe Acrobat%" and SMS_G_System_ADD_REMOVE_PROGRAMS.Version < "10.1"
+```
+ 
+
+Find Software GUID string (Origin) - Useful for finding uninstaller GUIDs when trying to uninstall many older client versions.
+```
+select SMS_R_System.NetbiosName, SMS_G_System_COMPUTER_SYSTEM.UserName, SMS_G_System_ADD_REMOVE_PROGRAMS.DisplayName, SMS_G_System_ADD_REMOVE_PROGRAMS.ProdID, SMS_G_System_ADD_REMOVE_PROGRAMS.Version from  SMS_G_System_ADD_REMOVE_PROGRAMS inner join SMS_R_System on SMS_R_System.ResourceId = SMS_G_System_ADD_REMOVE_PROGRAMS.ResourceID inner join SMS_G_System_COMPUTER_SYSTEM on SMS_G_System_COMPUTER_SYSTEM.ResourceId = SMS_R_System.ResourceId where SMS_G_System_ADD_REMOVE_PROGRAMS.DisplayName like "%origin%"
+```
+ 
+
+Select all machines having Software installed by ARP Display Name (OneDrive)
+```
+select *  from  SMS_R_System inner join SMS_G_System_INSTALLED_SOFTWARE on SMS_G_System_INSTALLED_SOFTWARE.ResourceID = SMS_R_System.ResourceId where SMS_G_System_INSTALLED_SOFTWARE.ARPDisplayName like "Microsoft OneDrive"
+```
+ 
+
+Select machines having a specific EXE (or other specific file) in directory contents (Spybot Search & Destroy)
+```
+select SMS_R_System.Name, SMS_G_System_SoftwareFile.FileName, SMS_G_System_SoftwareFile.FilePath from  SMS_R_System inner join SMS_G_System_SoftwareFile on SMS_G_System_SoftwareFile.ResourceID = SMS_R_System.ResourceId where SMS_G_System_SoftwareFile.FileName = "sdshred.exe"
+```
+ 
+
+Select machines having a specific EXE and version number with File path (IE 11)
+```
+select *  from  SMS_R_System inner join SMS_G_System_SoftwareFile on SMS_G_System_SoftwareFile.ResourceID = SMS_R_System.ResourceId inner join SMS_G_System_OPERATING_SYSTEM on SMS_G_System_OPERATING_SYSTEM.ResourceID = SMS_R_System.ResourceId where SMS_G_System_SoftwareFile.FilePath like "%\\Program Files\\Internet Explorer\\" and SMS_G_System_SoftwareFile.FileName like "iexplore.exe" and SMS_G_System_SoftwareFile.FileVersion like "11.%"
+```
+ 
+
+Select all machines specific Windows version level
+```
+select distinct SMS_R_System.Name, SMS_G_System_OPERATING_SYSTEM.BuildNumber, SMS_G_System_OPERATING_SYSTEM.BuildType, SMS_G_System_OPERATING_SYSTEM.Caption, SMS_G_System_OPERATING_SYSTEM.Description, SMS_G_System_OPERATING_SYSTEM.Name, SMS_G_System_OPERATING_SYSTEM.Version, SMS_G_System_OPERATING_SYSTEM.ProductType, SMS_G_System_OPERATING_SYSTEM.PlusProductID, SMS_G_System_OPERATING_SYSTEM.PlusVersionNumber, SMS_G_System_UAComputerStatus.UpgradeAnalyticsStatus from  SMS_R_System inner join SMS_G_System_OPERATING_SYSTEM on SMS_G_System_OPERATING_SYSTEM.ResourceID = SMS_R_System.ResourceId inner join SMS_G_System_UAComputerStatus on SMS_G_System_UAComputerStatus.ResourceID = SMS_R_System.ResourceId order by SMS_R_System.Name
+```
+
 
 Other Examples
 
@@ -259,44 +300,3 @@ Other Examples
 | Accelrys | MathType | PeakScanner | Rotor-Gene | 
 | StatXact | Teraterm | transomics | USEPA |
 | VariantReporter | VAS |
-
-Project & Visio Licensing - Determine the count difference between Pro and Standard Versions
-```
-select SMS_R_System.NetbiosName, SMS_G_System_COMPUTER_SYSTEM.UserName, SMS_G_System_INSTALLED_SOFTWARE.ProductName, SMS_R_System.SystemOUName, SMS_R_System.operatingSystem from  SMS_R_System inner join SMS_G_System_INSTALLED_SOFTWARE on SMS_G_System_INSTALLED_SOFTWARE.ResourceID = SMS_R_System.ResourceId inner join SMS_G_System_COMPUTER_SYSTEM on SMS_G_System_COMPUTER_SYSTEM.ResourceID = SMS_R_System.ResourceId where SMS_G_System_INSTALLED_SOFTWARE.ProductName like "%Visio Standard%" or SMS_G_System_INSTALLED_SOFTWARE.ProductName like "%Visio Pro%" or SMS_G_System_INSTALLED_SOFTWARE.ProductName like "%Project Pro%" or SMS_G_System_INSTALLED_SOFTWARE.ProductName like "%Project Standard%"
-```
- 
-
-Select all machines having Software installed below a specific version number (Adobe < 10.1):
-```
-select SMS_R_System.Name, SMS_R_System.OperatingSystemNameandVersion, SMS_G_System_ADD_REMOVE_PROGRAMS.DisplayName, SMS_G_System_ADD_REMOVE_PROGRAMS.Version from  SMS_R_System inner join SMS_G_System_ADD_REMOVE_PROGRAMS on SMS_G_System_ADD_REMOVE_PROGRAMS.ResourceID = SMS_R_System.ResourceId where SMS_G_System_ADD_REMOVE_PROGRAMS.DisplayName like "Adobe Acrobat%" and SMS_G_System_ADD_REMOVE_PROGRAMS.Version < "10.1"
-```
- 
-
-Find Software GUID string (Origin) - Useful for finding uninstaller GUIDs when trying to uninstall many older client versions.
-```
-select SMS_R_System.NetbiosName, SMS_G_System_COMPUTER_SYSTEM.UserName, SMS_G_System_ADD_REMOVE_PROGRAMS.DisplayName, SMS_G_System_ADD_REMOVE_PROGRAMS.ProdID, SMS_G_System_ADD_REMOVE_PROGRAMS.Version from  SMS_G_System_ADD_REMOVE_PROGRAMS inner join SMS_R_System on SMS_R_System.ResourceId = SMS_G_System_ADD_REMOVE_PROGRAMS.ResourceID inner join SMS_G_System_COMPUTER_SYSTEM on SMS_G_System_COMPUTER_SYSTEM.ResourceId = SMS_R_System.ResourceId where SMS_G_System_ADD_REMOVE_PROGRAMS.DisplayName like "%origin%"
-```
- 
-
-Select all machines having Software installed by ARP Display Name (OneDrive)
-```
-select *  from  SMS_R_System inner join SMS_G_System_INSTALLED_SOFTWARE on SMS_G_System_INSTALLED_SOFTWARE.ResourceID = SMS_R_System.ResourceId where SMS_G_System_INSTALLED_SOFTWARE.ARPDisplayName like "Microsoft OneDrive"
-```
- 
-
-Select machines having a specific EXE (or other specific file) in directory contents (Spybot Search & Destroy)
-```
-select SMS_R_System.Name, SMS_G_System_SoftwareFile.FileName, SMS_G_System_SoftwareFile.FilePath from  SMS_R_System inner join SMS_G_System_SoftwareFile on SMS_G_System_SoftwareFile.ResourceID = SMS_R_System.ResourceId where SMS_G_System_SoftwareFile.FileName = "sdshred.exe"
-```
- 
-
-Select machines having a specific EXE and version number with File path (IE 11)
-```
-select *  from  SMS_R_System inner join SMS_G_System_SoftwareFile on SMS_G_System_SoftwareFile.ResourceID = SMS_R_System.ResourceId inner join SMS_G_System_OPERATING_SYSTEM on SMS_G_System_OPERATING_SYSTEM.ResourceID = SMS_R_System.ResourceId where SMS_G_System_SoftwareFile.FilePath like "%\\Program Files\\Internet Explorer\\" and SMS_G_System_SoftwareFile.FileName like "iexplore.exe" and SMS_G_System_SoftwareFile.FileVersion like "11.%"
-```
- 
-
-Select all machines specific Windows version level
-```
-select distinct SMS_R_System.Name, SMS_G_System_OPERATING_SYSTEM.BuildNumber, SMS_G_System_OPERATING_SYSTEM.BuildType, SMS_G_System_OPERATING_SYSTEM.Caption, SMS_G_System_OPERATING_SYSTEM.Description, SMS_G_System_OPERATING_SYSTEM.Name, SMS_G_System_OPERATING_SYSTEM.Version, SMS_G_System_OPERATING_SYSTEM.ProductType, SMS_G_System_OPERATING_SYSTEM.PlusProductID, SMS_G_System_OPERATING_SYSTEM.PlusVersionNumber, SMS_G_System_UAComputerStatus.UpgradeAnalyticsStatus from  SMS_R_System inner join SMS_G_System_OPERATING_SYSTEM on SMS_G_System_OPERATING_SYSTEM.ResourceID = SMS_R_System.ResourceId inner join SMS_G_System_UAComputerStatus on SMS_G_System_UAComputerStatus.ResourceID = SMS_R_System.ResourceId order by SMS_R_System.Name
-```
